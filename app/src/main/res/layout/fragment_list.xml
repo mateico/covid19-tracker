@@ -11,20 +11,32 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/countTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="List Fragment" />
+            tools:text="123"
+            tools:layout_editor_absoluteX="-41dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <Button
             android:id="@+id/detailButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            android:text="next"
+            app:layout_constraintBottom_toBottomOf="@+id/countTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="@+id/countTextView" />
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add"
+            app:layout_constraintBottom_toTopOf="@+id/detailButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/countTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
