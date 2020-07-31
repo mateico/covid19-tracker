@@ -16,34 +16,35 @@ class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
 
+    private lateinit var binding: FragmentListBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         /*To inflate the fragment's view, call the DataBindingUtil.inflate() method on the fragment's Binding object, which is FragmentTitleBinding */
-        val binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
+        binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
             R.layout.fragment_list,container,false)
 
         binding.detailButton.setOnClickListener{view : View ->
-            view.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(5))
+            view.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(viewModel.count))
         }
-
-        var count = 0
-
-        binding.addButton.setOnClickListener{view : View ->
-            count += 1
-            binding.countTextView.text = count.toString()
-        }
-
-
-
-
 
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
+
+        binding.addButton.setOnClickListener{view : View ->
+            viewModel.addCounter()
+            binding.countTextView.text = viewModel.count.toString()
+        }
+
 
         return binding.root
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.countTextView.text = viewModel.count.toString()
+    }
 }

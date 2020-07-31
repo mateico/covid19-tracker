@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.rial.covid_19tracker.databinding.FragmentDetailBinding
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class DetailFragment : Fragment() {
+
+    private lateinit var viewModel: DetailViewModel
+    private lateinit var viewModelFactory: DetailViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +25,12 @@ class DetailFragment : Fragment() {
             R.layout.fragment_detail,container,false)
 
         val args = DetailFragmentArgs.fromBundle(arguments!!)
-        Toast.makeText(context, "Country Id: ${args.countryId}", Toast.LENGTH_LONG).show()
+
+
+        viewModelFactory = DetailViewModelFactory(DetailFragmentArgs.fromBundle(arguments!!).countryId)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
+
+        Toast.makeText(context, "Country Id: ${viewModel.countryId}", Toast.LENGTH_LONG).show()
 
         return binding.root
     }
