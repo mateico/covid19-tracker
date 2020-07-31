@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
             R.layout.fragment_detail,container,false)
 
-        val args = DetailFragmentArgs.fromBundle(arguments!!)
+        //val args = DetailFragmentArgs.fromBundle(arguments!!)
 
 
         viewModelFactory = DetailViewModelFactory(DetailFragmentArgs.fromBundle(arguments!!).countryId)

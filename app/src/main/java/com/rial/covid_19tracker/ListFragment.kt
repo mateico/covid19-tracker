@@ -15,6 +15,7 @@ import com.rial.covid_19tracker.databinding.FragmentListBinding
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
+    private lateinit var viewModelFactory: ListViewModelFactory
 
     private lateinit var binding: FragmentListBinding
 
@@ -27,11 +28,14 @@ class ListFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
             R.layout.fragment_list,container,false)
 
+        viewModelFactory = ListViewModelFactory()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
+
         binding.detailButton.setOnClickListener{view : View ->
             view.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(viewModel.count))
         }
 
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
 
         binding.addButton.setOnClickListener{view : View ->
             viewModel.addCounter()
