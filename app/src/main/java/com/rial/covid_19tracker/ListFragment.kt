@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -14,9 +15,15 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // inflates fragment's view
+
+        /*To inflate the fragment's view, call the DataBindingUtil.inflate() method on the fragment's Binding object, which is FragmentTitleBinding */
         val binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
             R.layout.fragment_list,container,false)
+
+        binding.detailButton.setOnClickListener{view : View ->
+            view.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(5))
+        }
+
         return binding.root
 
     }

@@ -9,10 +9,18 @@
         android:id="@+id/listFragment"
         android:name="com.rial.covid_19tracker.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/action_listFragment_to_detailFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/action_listFragment_to_detailFragment"
         android:name="com.rial.covid_19tracker.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="countryId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
