@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.snackbar.Snackbar
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -46,8 +44,7 @@ class ListFragment : Fragment() {
 
         binding.listViewModel = viewModel
 
-        viewModel.goToDetail.observe(viewLifecycleOwner, Observer<Boolean> { mustNavigate ->
-            if (mustNavigate) toDetail()
+        viewModel.navigateToDetail.observe(this, Observer { if(it == true) toDetail()
         })
 
         return binding.root
@@ -56,13 +53,19 @@ class ListFragment : Fragment() {
 
     private fun toDetail() {
         val id = viewModel.count.value!!
-        Toast.makeText(activity, "To Detail. Id: $id", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "To Detail. Id: $id", Toast.LENGTH_SHORT).show()
+
+        Snackbar.make(
+            activity!!.findViewById(android.R.id.content),
+            "To Detail. Id: $id",
+            Snackbar.LENGTH_SHORT // How long to display the message.
+        ).show()
 
         val action = ListFragmentDirections.actionListFragmentToDetailFragment(id)
         action.countryId = viewModel.count.value?:0
         NavHostFragment.findNavController(this).navigate(action)
 
-        viewModel.onGoToDetailComplete()
+        viewModel.doneNavegatingToDetail()
     }
 
 }
