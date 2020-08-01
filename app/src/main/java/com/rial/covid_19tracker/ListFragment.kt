@@ -35,7 +35,13 @@ class ListFragment : Fragment() {
         // This is used so that the binding can observe LiveData updates
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModelFactory = ListViewModelFactory()
+        // The requireNotNull Kotlin function throws an IllegalArgumentException if the value is null.
+        val application = requireNotNull(this.activity).application
+
+        // I need a reference to my data source via a reference to the DAO.
+        val dataSource= CovidDatabase.getInstance(application).countryDao
+
+        viewModelFactory = ListViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
         binding.listViewModel = viewModel
