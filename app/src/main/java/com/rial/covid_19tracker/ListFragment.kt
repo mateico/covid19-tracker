@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -28,27 +31,32 @@ class ListFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
             R.layout.fragment_list,container,false)
 
+        // Specify the fragment view as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
+        binding.lifecycleOwner = viewLifecycleOwner
+
         viewModelFactory = ListViewModelFactory()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
-        binding.detailButton.setOnClickListener{view : View ->
-            view.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(viewModel.count))
-        }
+        binding.listViewModel = viewModel
 
-        //viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
-
-        binding.addButton.setOnClickListener{view : View ->
-            viewModel.addCounter()
-            binding.countTextView.text = viewModel.count.toString()
-        }
-
+        viewModel.goToDetail.observe(viewLifecycleOwner, Observer<Boolean> { mustNavigate ->
+            if (mustNavigate) toDetail()
+        })
 
         return binding.root
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.countTextView.text = viewModel.count.toString()
+    private fun toDetail() {
+        val id = viewModel.count.value!!
+        Toast.makeText(activity, "To Detail. Id: $id", Toast.LENGTH_SHORT).show()
+
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(id)
+        action.countryId = viewModel.count.value?:0
+        NavHostFragment.findNavController(this).navigate(action)
+
+        viewModel.onGoToDetailComplete()
     }
+
 }

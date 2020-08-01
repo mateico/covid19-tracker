@@ -24,13 +24,8 @@ class DetailFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
             R.layout.fragment_detail,container,false)
 
-        //val args = DetailFragmentArgs.fromBundle(arguments!!)
-
-
         viewModelFactory = DetailViewModelFactory(DetailFragmentArgs.fromBundle(arguments!!).countryId)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
-
-        Toast.makeText(context, "Country Id: ${viewModel.countryId}", Toast.LENGTH_LONG).show()
 
         return binding.root
     }
