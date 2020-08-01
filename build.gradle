@@ -5,6 +5,8 @@ buildscript {
         supportlibVersion = '1.0.0'
         navigationVersion = '1.0.0-rc02'
         constraintlayoutVersion = '1.1.3'
+        room_version = '2.0.0'
+        coroutine_version = '1.0.0'
 
     }
 
