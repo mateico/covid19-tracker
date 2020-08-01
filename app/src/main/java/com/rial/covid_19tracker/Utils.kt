@@ -6,7 +6,7 @@ import android.text.Html
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 
-fun formatCountries(country: List<Country>): Spanned {
+fun formatCountries(country: List<Country>, resources: Resources): Spanned {
     val sb = StringBuilder()
     sb.apply {
         append("hardocde title")

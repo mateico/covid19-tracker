@@ -41,7 +41,7 @@ class ListFragment : Fragment() {
         // I need a reference to my data source via a reference to the DAO.
         val dataSource= CovidDatabase.getInstance(application).countryDao
 
-        viewModelFactory = ListViewModelFactory(dataSource, CovidApplication())
+        viewModelFactory = ListViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
         binding.listViewModel = viewModel

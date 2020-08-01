@@ -1,11 +1,13 @@
 package com.rial.covid_19tracker
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class ListViewModelFactory(
     private val dataSource: CountryDao,
-    private val application: CovidApplication) : ViewModelProvider.Factory {
+    private val application: Application
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ListViewModel::class.java)) {

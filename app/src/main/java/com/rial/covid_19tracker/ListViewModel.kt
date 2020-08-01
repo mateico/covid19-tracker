@@ -1,9 +1,10 @@
 package com.rial.covid_19tracker
 
+import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.*
 
-class ListViewModel(val database: CountryDao, application: CovidApplication) : AndroidViewModel(application) {
+class ListViewModel(val database: CountryDao, application: Application) : AndroidViewModel(application) {
 
     // allows you to cancel all coroutines started by this view model when the view model is no longer used and is destroyed
     private var viewModelJob = Job()
@@ -15,7 +16,7 @@ class ListViewModel(val database: CountryDao, application: CovidApplication) : A
     private val countries = database.getAllCountries()
 
     val countriesString = Transformations.map(countries) { countries ->
-        formatCountries(countries)
+        formatCountries(countries, application.resources)
     }
 
     private var _count = MutableLiveData<Int>()
