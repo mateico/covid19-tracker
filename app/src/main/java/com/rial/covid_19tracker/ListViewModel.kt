@@ -1,12 +1,7 @@
 package com.rial.covid_19tracker
 
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import androidx.lifecycle.*
+import kotlinx.coroutines.*
 
 class ListViewModel(val database: CountryDao, application: CovidApplication) : AndroidViewModel(application) {
 
@@ -17,8 +12,11 @@ class ListViewModel(val database: CountryDao, application: CovidApplication) : A
     // Using Dispatchers.Main means that coroutines launched in the uiScope will run on the main thread (they result in an update of the UI.)
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    private val countries = database.getAllCountries()
 
-
+    val countriesString = Transformations.map(countries) { countries ->
+        formatCountries(countries)
+    }
 
     private var _count = MutableLiveData<Int>()
     val count: LiveData<Int>
@@ -28,8 +26,39 @@ class ListViewModel(val database: CountryDao, application: CovidApplication) : A
     val goToDetail: LiveData<Boolean>
         get() = _goToDetail
 
+    private var oneCountry = MutableLiveData<Country?>()
+
     init {
         _count.value = 0
+        initializeTonight()
+    }
+
+    private fun initializeTonight() {
+        uiScope.launch {
+            oneCountry.value = getOneCountryFromDatabase()
+        }
+    }
+
+    private suspend fun getOneCountryFromDatabase(): Country? {
+        // eturn the result from a coroutine that runs in the Dispatchers.IO context.
+        // Use the I/O dispatcher, because getting data from the database is an I/O operation and has nothing to do with the UI.
+        return withContext(Dispatchers.IO) {
+            var countr = database.getCountryByCode("US")
+            countr
+        }
+    }
+
+    fun onInsertCountry() {
+        uiScope.launch {
+            var country = Country(code = _count.value.toString())
+            insert(country)
+        }
+    }
+
+    private suspend fun insert(country: Country) {
+        withContext(Dispatchers.IO) {
+            database.insert(country)
+        }
     }
 
     override fun onCleared() {
@@ -39,6 +68,7 @@ class ListViewModel(val database: CountryDao, application: CovidApplication) : A
 
     fun addCounter(){
         _count.value = _count.value?.plus(1)
+        onInsertCountry()
     }
 
     fun onGoToDetail() {

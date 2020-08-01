@@ -48,6 +48,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/countTextView" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{listViewModel.countriesString}"
+            app:layout_constraintBottom_toBottomOf="@+id/countTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailButton" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

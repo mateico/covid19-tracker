@@ -15,8 +15,8 @@ interface CountryDao {
     @Update
     fun update(country: Country)
 
-    @Query("SELECT * from countries_summary WHERE name = :key")
-    fun get(key: String): Country?
+    @Query("SELECT * from countries_summary WHERE code = :key")
+    fun getCountryByCode(key: String): Country?
 
     @Query("DELETE FROM countries_summary")
     fun clear()
