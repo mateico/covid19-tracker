@@ -23,9 +23,9 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     val count: LiveData<Int>
         get() = _count
 
-    private val _goToDetail = MutableLiveData<Boolean>()
-    val goToDetail: LiveData<Boolean>
-        get() = _goToDetail
+    private val _navigateToDetail = MutableLiveData<Boolean>()
+    val navigateToDetail: LiveData<Boolean>
+        get() = _navigateToDetail
 
     private var oneCountry = MutableLiveData<Country?>()
 
@@ -72,11 +72,11 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
         onInsertCountry()
     }
 
-    fun onGoToDetail() {
-        _goToDetail.value = true
+    fun onNavegatingToDetail() {
+        _navigateToDetail.value = true
     }
 
-    fun onGoToDetailComplete() {
-        _goToDetail.value = false
+    fun doneNavegatingToDetail() {
+        _navigateToDetail.value = false
     }
 }
