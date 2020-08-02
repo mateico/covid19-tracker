@@ -13,10 +13,10 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     // Using Dispatchers.Main means that coroutines launched in the uiScope will run on the main thread (they result in an update of the UI.)
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val countries = database.getAllCountries()
+    val countries = database.getAllCountries()
 
     val countriesString = Transformations.map(countries) { countries ->
-        formatCountries(countries, application.resources)
+        formatCountries(countries)
     }
 
     private var _count = MutableLiveData<Int>()

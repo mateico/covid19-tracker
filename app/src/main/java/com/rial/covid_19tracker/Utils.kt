@@ -4,9 +4,11 @@ import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.widget.TextView
 import androidx.core.text.HtmlCompat
+import androidx.recyclerview.widget.RecyclerView
 
-fun formatCountries(country: List<Country>, resources: Resources): Spanned {
+fun formatCountries(country: List<Country>): Spanned {
     val sb = StringBuilder()
     sb.apply {
         append("hardocde title")
@@ -25,3 +27,5 @@ fun formatCountries(country: List<Country>, resources: Resources): Spanned {
         return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+
+class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

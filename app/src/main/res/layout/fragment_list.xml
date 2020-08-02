@@ -30,31 +30,44 @@
             android:id="@+id/detailButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="next"
             android:onClick="@{() -> listViewModel.onNavegatingToDetail()}"
+            android:text="next"
             app:layout_constraintBottom_toBottomOf="@+id/countTextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/countTextView" />
+            app:layout_constraintTop_toTopOf="@+id/countTextView"
+            app:layout_constraintVertical_bias="0.084" />
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="add"
             android:onClick="@{() -> listViewModel.addCounter()}"
+            android:text="add"
             app:layout_constraintBottom_toTopOf="@+id/detailButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/countTextView" />
+            app:layout_constraintTop_toTopOf="@+id/countTextView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:text="@{listViewModel.countriesString}"
             app:layout_constraintBottom_toBottomOf="@+id/countTextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/countryRecyclerView"
+            android:layout_width="401dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/countTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailButton" />
 

@@ -18,6 +18,8 @@ class ListFragment : Fragment() {
     private lateinit var viewModel: ListViewModel
     private lateinit var viewModelFactory: ListViewModelFactory
 
+
+
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -41,6 +43,14 @@ class ListFragment : Fragment() {
 
         viewModelFactory = ListViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
+
+        val adapter = CountryAdapter()
+        binding.countryRecyclerView.adapter = adapter
+
+        viewModel.countries.observe(viewLifecycleOwner, Observer {
+            // asign the value to the adapter's data
+            adapter.data = it
+        })
 
         binding.listViewModel = viewModel
 
