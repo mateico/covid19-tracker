@@ -42,7 +42,7 @@ interface CovidApiService {
     @GET("summary")
     fun getSummary():
     // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
-            Deferred<List<Country>>
+            Deferred<SummaryResponse>
 }
 
 /**

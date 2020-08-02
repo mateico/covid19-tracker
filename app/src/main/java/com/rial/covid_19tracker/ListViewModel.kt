@@ -96,7 +96,7 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
             try {
                 // Await the completion of our Retrofit request
                 var listResult = getCountriesDeferred.await()
-                _response.value = "Success: ${listResult.size} summary retrieved"
+                _response.value = "Success: ${listResult} summary retrieved"
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }
