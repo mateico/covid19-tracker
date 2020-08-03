@@ -92,11 +92,14 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     private fun getCountriesSummary() {
         uiScope.launch {
             // Get the Deferred object for our Retrofit request
+            // To use the Deferred object that Retrofit returns for the network task, you have to be inside a coroutine
             var getCountriesDeferred = CovidApi.retrofitService.getSummary()
             try {
                 // Await the completion of our Retrofit request
+                // Calling await() on the Deferred object returns the result from the network call when the value is ready.
                 var listResult = getCountriesDeferred.await()
-                _response.value = "Success: ${listResult} summary retrieved"
+                // update the response message for the successful response
+                _response.value = "Success: ${listResult.countries.size} summary retrieved"
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }

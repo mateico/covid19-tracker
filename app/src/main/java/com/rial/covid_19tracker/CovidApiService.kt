@@ -36,8 +36,6 @@ interface CovidApiService {
     /**
      * Returns a Coroutine [Deferred] [List] of [MarsProperty] which can be fetched with await() if
      * in a Coroutine scope.
-     * The @GET annotation indicates that the "realestate" endpoint will be requested with the GET
-     * HTTP method
      */
     @GET("summary")
     fun getSummary():
