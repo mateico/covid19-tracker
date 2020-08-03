@@ -22,7 +22,10 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     // The onBindViewHolder()function is called by RecyclerView to display the data for one list item at the specified position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.code.text = item.code
+        holder.name.text = item.name
+        holder.confirmedCases.text = "Casos confirmados: " + item.confirmed.toString()
+        holder.totalDeaths.text = "Fallecidos: " + item.deaths.toString()
+        holder.newDeaths.text = "Nuevas muertes: " + item.newDeaths.toString()
     }
 
     // is called when the RecyclerView needs a view holder to represent an item.
@@ -38,7 +41,9 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val code: TextView = itemView.findViewById(R.id.codeTextView)
         val name: TextView = itemView.findViewById(R.id.nameTextView)
+        val confirmedCases: TextView = itemView.findViewById(R.id.confirmedCasesTextView)
+        val totalDeaths: TextView = itemView.findViewById(R.id.totalDeathsTextView)
+        val newDeaths: TextView = itemView.findViewById(R.id.newDeathsTextView)
     }
 }

@@ -17,27 +17,48 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/codeTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="0dp"
             android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:text="Wednesday" />
 
         <TextView
-            android:id="@+id/nameTextView"
+            android:id="@+id/confirmedCasesTextView"
             android:layout_width="0dp"
             android:layout_height="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:layout_constraintVertical_bias="0.0"
             tools:text="Excellent!!!" />
+
+        <TextView
+            android:id="@+id/totalDeathsTextView"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/newDeathsTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmedCasesTextView" />
+
+        <TextView
+            android:id="@+id/newDeathsTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/totalDeathsTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
