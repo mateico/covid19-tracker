@@ -1,10 +1,13 @@
 package com.rial.covid_19tracker.database
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "countries_summary")
 data class Country (
         @PrimaryKey
@@ -17,4 +20,4 @@ data class Country (
         @Json(name = "Deaths") val deaths: Int = 0,
         @ColumnInfo(name = "new_deaths")
         @Json(name = "NewDeaths") val newDeaths: Int = 0
-)
+) : Parcelable

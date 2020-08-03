@@ -27,8 +27,8 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     val response: LiveData<String>
         get() = _response
 
-    private val _navigateToDetail = MutableLiveData<Boolean>()
-    val navigateToDetail: LiveData<Boolean>
+    private val _navigateToDetail = MutableLiveData<Country>()
+    val navigateToDetail: LiveData<Country>
         get() = _navigateToDetail
 
     private var oneCountry = MutableLiveData<Country?>()
@@ -54,14 +54,6 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
         }
     }
 
-    fun onInsertCountry() {
-        uiScope.launch {
-            var country =
-                Country(code = _count.value.toString())
-            insert(country)
-        }
-    }
-
     private suspend fun insert(country: Country) {
         withContext(Dispatchers.IO) {
             database.insert(country)
@@ -73,17 +65,12 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
         viewModelJob.cancel()
     }
 
-    fun addCounter(){
-        _count.value = _count.value?.plus(1)
-        onInsertCountry()
-    }
-
-    fun onNavegatingToDetail() {
-        _navigateToDetail.value = true
+    fun onNavegatingToDetail(country: Country) {
+        _navigateToDetail.value = country
     }
 
     fun doneNavegatingToDetail() {
-        _navigateToDetail.value = false
+        _navigateToDetail.value = null
     }
 
     /**
