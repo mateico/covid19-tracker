@@ -20,7 +20,7 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="countryId"
-            app:argType="integer" />
+            android:name="selectedCountry"
+            app:argType="com.rial.covid_19tracker.database.Country" />
     </fragment>
 </navigation>

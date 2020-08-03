@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rial.covid_19tracker.*
 import com.rial.covid_19tracker.database.CovidDatabase
@@ -50,7 +51,9 @@ class ListFragment : Fragment() {
         )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
-        val adapter = CountryAdapter()
+        val adapter = CountryAdapter(CountryAdapter.OnClickListener {
+            viewModel.onNavegatingToDetail(it)
+        })
         binding.countryRecyclerView.adapter = adapter
 
         viewModel.countries.observe(viewLifecycleOwner, Observer {
@@ -60,14 +63,20 @@ class ListFragment : Fragment() {
 
         binding.listViewModel = viewModel
 
-        viewModel.navigateToDetail.observe(this, Observer { if(it == true) toDetail()
+        viewModel.navigateToDetail.observe(this, Observer {
+            //if(it == true) toDetail()
+            if(null != it) {
+                this.findNavController().navigate(
+                    ListFragmentDirections.actionListFragmentToDetailFragment(it))
+                viewModel.doneNavegatingToDetail()
+            }
         })
 
         return binding.root
 
     }
 
-    private fun toDetail() {
+    /*private fun toDetail() {
         val id = viewModel.count.value!!
         //Toast.makeText(activity, "To Detail. Id: $id", Toast.LENGTH_SHORT).show()
 
@@ -85,6 +94,6 @@ class ListFragment : Fragment() {
         NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.doneNavegatingToDetail()
-    }
+    }*/
 
 }

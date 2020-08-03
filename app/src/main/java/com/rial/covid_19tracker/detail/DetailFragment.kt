@@ -23,11 +23,15 @@ class DetailFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
             R.layout.fragment_detail,container,false)
 
+        binding.lifecycleOwner = viewLifecycleOwner
+
         viewModelFactory =
             DetailViewModelFactory(
-                DetailFragmentArgs.fromBundle(arguments!!).countryId
+                DetailFragmentArgs.fromBundle(arguments!!).selectedCountry
             )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
+
+        binding.detailViewModel = viewModel
 
         return binding.root
     }

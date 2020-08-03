@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.rial.covid_19tracker.R
 import com.rial.covid_19tracker.database.Country
 
-class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
+class CountryAdapter( private val onClickListener: OnClickListener ) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
 
     var data = listOf<Country>()
         set(value) {
@@ -26,6 +27,9 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
         holder.confirmedCases.text = "Casos confirmados: " + item.confirmed.toString()
         holder.totalDeaths.text = "Fallecidos: " + item.deaths.toString()
         holder.newDeaths.text = "Nuevas muertes: " + item.newDeaths.toString()
+        holder.card.setOnClickListener {
+            onClickListener.onClick(item)
+        }
     }
 
     // is called when the RecyclerView needs a view holder to represent an item.
@@ -41,9 +45,15 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val card: CardView = itemView.findViewById(R.id.card)
         val name: TextView = itemView.findViewById(R.id.nameTextView)
         val confirmedCases: TextView = itemView.findViewById(R.id.confirmedCasesTextView)
         val totalDeaths: TextView = itemView.findViewById(R.id.totalDeathsTextView)
         val newDeaths: TextView = itemView.findViewById(R.id.newDeathsTextView)
     }
+
+    class OnClickListener(val clickListener: (country:Country) -> Unit) {
+        fun onClick(country:Country) = clickListener(country)
+    }
 }
+

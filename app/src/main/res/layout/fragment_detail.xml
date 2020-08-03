@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-tools:context=".detail.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".detail.DetailFragment">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/listConstraint"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
+        <variable
+            name="detailViewModel"
+            type="com.rial.covid_19tracker.detail.DetailViewModel" />
+    </data>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/listConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Detail Fragment" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{detailViewModel.selectedCountry.name}"
+            tools:text="country name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
