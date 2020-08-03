@@ -23,6 +23,10 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     val count: LiveData<Int>
         get() = _count
 
+    private val _response = MutableLiveData<String>()
+    val response: LiveData<String>
+        get() = _response
+
     private val _navigateToDetail = MutableLiveData<Boolean>()
     val navigateToDetail: LiveData<Boolean>
         get() = _navigateToDetail
@@ -32,6 +36,7 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     init {
         _count.value = 0
         initializeTonight()
+        getCountriesSummary()
     }
 
     private fun initializeTonight() {
@@ -78,5 +83,26 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
 
     fun doneNavegatingToDetail() {
         _navigateToDetail.value = false
+    }
+
+    /**
+     * Sets the value of the response LiveData to the Mars API status or the successful number of
+     * Mars properties retrieved.
+     */
+    private fun getCountriesSummary() {
+        uiScope.launch {
+            // Get the Deferred object for our Retrofit request
+            // To use the Deferred object that Retrofit returns for the network task, you have to be inside a coroutine
+            var getCountriesDeferred = CovidApi.retrofitService.getSummary()
+            try {
+                // Await the completion of our Retrofit request
+                // Calling await() on the Deferred object returns the result from the network call when the value is ready.
+                var listResult = getCountriesDeferred.await()
+                // update the response message for the successful response
+                _response.value = "Success: ${listResult.countries.size} summary retrieved"
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
+            }
+        }
     }
 }

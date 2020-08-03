@@ -56,10 +56,14 @@
             android:id="@+id/textView"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:text="@{listViewModel.countriesString}"
+            android:text="@{listViewModel.response}"
             app:layout_constraintBottom_toBottomOf="@+id/countTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+<!--
+        android:text="@{listViewModel.countriesString}"
+-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/countryRecyclerView"
