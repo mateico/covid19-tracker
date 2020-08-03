@@ -1,10 +1,12 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.list
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.rial.covid_19tracker.R
+import com.rial.covid_19tracker.database.Country
 
 class CountryAdapter: RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
 

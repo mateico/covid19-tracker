@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

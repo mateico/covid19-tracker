@@ -1,5 +1,7 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.database
 
+import com.rial.covid_19tracker.database.Country
+import com.rial.covid_19tracker.database.GlobalData
 import com.squareup.moshi.Json
 
 data class SummaryResponse (

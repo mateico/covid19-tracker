@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.database
 
 import android.content.Context
 import androidx.room.Database
@@ -26,7 +26,8 @@ abstract class CovidDatabase : RoomDatabase() {
             synchronized(this) {
                 // Copy the current value of INSTANCE to a local variable instance.
                 // This is to take advantage of smart cast, which is only available to local variables.
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
 
                 if (instance == null) {
                     // If instance is null, use the database builder to get a database

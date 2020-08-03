@@ -3,6 +3,9 @@ package com.rial.covid_19tracker
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.rial.covid_19tracker.database.Country
+import com.rial.covid_19tracker.database.CountryDao
+import com.rial.covid_19tracker.database.CovidDatabase
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

@@ -1,7 +1,11 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.list
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.rial.covid_19tracker.database.Country
+import com.rial.covid_19tracker.database.CountryDao
+import com.rial.covid_19tracker.CovidApi
+import com.rial.covid_19tracker.formatCountries
 import kotlinx.coroutines.*
 
 class ListViewModel(val database: CountryDao, application: Application) : AndroidViewModel(application) {
@@ -56,7 +60,8 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
 
     fun onInsertCountry() {
         uiScope.launch {
-            var country = Country(code = _count.value.toString())
+            var country =
+                Country(code = _count.value.toString())
             insert(country)
         }
     }

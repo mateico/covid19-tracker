@@ -3,13 +3,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ListFragment">
+    tools:context=".list.ListFragment">
 
     <data>
 
         <variable
             name="listViewModel"
-            type="com.rial.covid_19tracker.ListViewModel" />
+            type="com.rial.covid_19tracker.list.ListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
