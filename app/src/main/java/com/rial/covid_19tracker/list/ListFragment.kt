@@ -50,7 +50,9 @@ class ListFragment : Fragment() {
         )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
-        val adapter = CountryAdapter()
+        val adapter = CountryAdapter(CountryAdapter.OnClickListener {
+            viewModel.onNavegatingToDetail()
+        })
         binding.countryRecyclerView.adapter = adapter
 
         viewModel.countries.observe(viewLifecycleOwner, Observer {
