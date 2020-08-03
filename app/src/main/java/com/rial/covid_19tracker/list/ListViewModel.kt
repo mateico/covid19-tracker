@@ -19,10 +19,6 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
 
     val countries = database.getAllCountries()
 
-    val countriesString = Transformations.map(countries) { countries ->
-        formatCountries(countries)
-    }
-
     private var _count = MutableLiveData<Int>()
     val count: LiveData<Int>
         get() = _count
@@ -105,6 +101,7 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
                 var listResult = getCountriesDeferred.await()
                 // update the response message for the successful response
                 _response.value = "Success: ${listResult.countries.size} summary retrieved"
+                //countries = listResult.countries
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }
