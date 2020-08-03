@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ data class Country (
         @PrimaryKey
         @Json(name = "Code") val code: String = "",
         @ColumnInfo(name = "name")
-        @Json(name = "Slug") val slug: String = "",
+        @Json(name = "Country_Region") val name: String = "",
         @ColumnInfo(name = "confirmed_cases")
         @Json(name = "Confirmed") val confirmed: Int = 0,
         @ColumnInfo(name = "total_deaths")

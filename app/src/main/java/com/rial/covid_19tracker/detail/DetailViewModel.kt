@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

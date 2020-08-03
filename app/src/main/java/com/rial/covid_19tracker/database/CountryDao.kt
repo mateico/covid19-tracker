@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

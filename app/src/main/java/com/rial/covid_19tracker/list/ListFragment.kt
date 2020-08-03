@@ -1,16 +1,17 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
+import com.rial.covid_19tracker.*
+import com.rial.covid_19tracker.database.CovidDatabase
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -39,9 +40,14 @@ class ListFragment : Fragment() {
         val application = requireNotNull(this.activity).application
 
         // I need a reference to my data source via a reference to the DAO.
-        val dataSource= CovidDatabase.getInstance(application).countryDao
+        val dataSource= CovidDatabase.getInstance(
+            application
+        ).countryDao
 
-        viewModelFactory = ListViewModelFactory(dataSource, application)
+        viewModelFactory = ListViewModelFactory(
+            dataSource,
+            application
+        )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
         val adapter = CountryAdapter()
@@ -71,7 +77,10 @@ class ListFragment : Fragment() {
             Snackbar.LENGTH_SHORT // How long to display the message.
         ).show()
 
-        val action = ListFragmentDirections.actionListFragmentToDetailFragment(id)
+        val action =
+            ListFragmentDirections.actionListFragmentToDetailFragment(
+                id
+            )
         action.countryId = viewModel.count.value?:0
         NavHostFragment.findNavController(this).navigate(action)
 

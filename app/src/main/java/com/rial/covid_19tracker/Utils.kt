@@ -1,12 +1,12 @@
 package com.rial.covid_19tracker
 
-import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.rial.covid_19tracker.database.Country
 
 fun formatCountries(country: List<Country>): Spanned {
     val sb = StringBuilder()
