@@ -31,7 +31,7 @@ class DetailFragment : Fragment() {
             )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
 
-        binding.viewModel = viewModel
+        binding.detailViewModel = viewModel
 
         return binding.root
     }
