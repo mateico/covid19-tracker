@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rial.covid_19tracker.R
 import com.rial.covid_19tracker.database.Country
@@ -55,5 +56,20 @@ class CountryAdapter( private val onClickListener: OnClickListener ) : RecyclerV
     class OnClickListener(val clickListener: (country:Country) -> Unit) {
         fun onClick(country:Country) = clickListener(country)
     }
+
+    class CountryDiffCallback : DiffUtil.ItemCallback<Country>() {
+
+        // if have the same id
+        override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean {
+            return oldItem.code ==  newItem.code
+        }
+
+        // if contain the same data (item updated)
+        override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
 }
 
