@@ -17,7 +17,7 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     // Using Dispatchers.Main means that coroutines launched in the uiScope will run on the main thread (they result in an update of the UI.)
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val countries = database.getAllCountries()
+    val countries = getCountriesSummary()
 
     private var _count = MutableLiveData<Int>()
     val count: LiveData<Int>
@@ -90,7 +90,8 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
      * Sets the value of the response LiveData to the Mars API status or the successful number of
      * Mars properties retrieved.
      */
-    private fun getCountriesSummary() {
+    private fun getCountriesSummary(): MutableLiveData<List<Country>> {
+        val result = MutableLiveData<List<Country>>()
         uiScope.launch {
             // Get the Deferred object for our Retrofit request
             // To use the Deferred object that Retrofit returns for the network task, you have to be inside a coroutine
@@ -101,10 +102,12 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
                 var listResult = getCountriesDeferred.await()
                 // update the response message for the successful response
                 _response.value = "Success: ${listResult.countries.size} summary retrieved"
+                result.value = listResult.countries
                 //countries = listResult.countries
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }
         }
+        return result
     }
 }
