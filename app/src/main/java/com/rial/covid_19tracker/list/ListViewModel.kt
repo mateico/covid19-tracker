@@ -1,6 +1,7 @@
 package com.rial.covid_19tracker.list
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.rial.covid_19tracker.database.Country
 import com.rial.covid_19tracker.database.CountryDao
@@ -30,6 +31,14 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     private val _navigateToDetail = MutableLiveData<Country>()
     val navigateToDetail: LiveData<Country>
         get() = _navigateToDetail
+
+    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    val eventNetworkError: LiveData<Boolean>
+        get() = _eventNetworkError
+
+    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    val isNetworkErrorShown: LiveData<Boolean>
+        get() = _isNetworkErrorShown
 
     private var oneCountry = MutableLiveData<Country?>()
 
@@ -90,11 +99,20 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
                 // update the response message for the successful response
                 _response.value = "Success: ${listResult.countries.size} summary retrieved"
                 result.value = listResult.countries
-                //countries = listResult.countries
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
+                if(countries.value.isNullOrEmpty())
+                    _eventNetworkError.value = true
             }
         }
         return result
+    }
+
+
+
+    fun onNetworkErrorShown() {
+        _isNetworkErrorShown.value = true
     }
 }
