@@ -58,7 +58,7 @@ class ListFragment : Fragment() {
 
         viewModel.countries.observe(viewLifecycleOwner, Observer {
             // asign the value to the adapter's data
-            adapter.data = it
+            adapter.submitList(it)
         })
 
         binding.listViewModel = viewModel
