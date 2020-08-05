@@ -8,16 +8,11 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "countries_summary")
 data class Country (
-        @PrimaryKey
-        @Json(name = "Code") val code: String = "",
-        @ColumnInfo(name = "name")
-        @Json(name = "Country_Region") val name: String = "",
-        @ColumnInfo(name = "confirmed_cases")
-        @Json(name = "Confirmed") val confirmed: Int = 0,
-        @ColumnInfo(name = "total_deaths")
-        @Json(name = "Deaths") val deaths: Int = 0,
-        @ColumnInfo(name = "new_deaths")
-        @Json(name = "NewDeaths") val newDeaths: Int = 0
+        val code: String,
+        val name: String,
+        val confirmed: Int,
+        val deaths: Int,
+        val newDeaths: Int
 ) : Parcelable
+

@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.utils
 
 import android.os.Build
 import android.text.Html

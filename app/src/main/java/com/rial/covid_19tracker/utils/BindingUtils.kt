@@ -1,4 +1,4 @@
-package com.rial.covid_19tracker
+package com.rial.covid_19tracker.utils
 
 import android.view.View
 import android.widget.TextView

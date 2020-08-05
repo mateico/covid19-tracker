@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rial.covid_19tracker.*
 import com.rial.covid_19tracker.database.CovidDatabase
+import com.rial.covid_19tracker.database.getDatabase
 import com.rial.covid_19tracker.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -42,9 +43,7 @@ class ListFragment : Fragment() {
         val application = requireNotNull(this.activity).application
 
         // I need a reference to my data source via a reference to the DAO.
-        val dataSource= CovidDatabase.getInstance(
-            application
-        ).countryDao
+        val dataSource= getDatabase(application).countryDao
 
         viewModelFactory = ListViewModelFactory(
             dataSource,
@@ -64,7 +63,7 @@ class ListFragment : Fragment() {
 
         binding.listViewModel = viewModel
 
-        viewModel.navigateToDetail.observe(this, Observer {
+        viewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
             //if(it == true) toDetail()
             if(null != it) {
                 this.findNavController().navigate(
@@ -73,7 +72,7 @@ class ListFragment : Fragment() {
             }
         })
 
-        viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
 
