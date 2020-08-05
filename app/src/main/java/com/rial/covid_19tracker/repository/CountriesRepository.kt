@@ -6,6 +6,7 @@ import com.rial.covid_19tracker.database.Country
 import com.rial.covid_19tracker.database.CovidDatabase
 import com.rial.covid_19tracker.database.asDomainModel
 import com.rial.covid_19tracker.network.CovidApi
+import com.rial.covid_19tracker.network.asDatabaseModel
 //import com.rial.covid_19tracker.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,7 +29,7 @@ class CountriesRepository(private  val database: CovidDatabase) {
     suspend fun refreshCountries(){
         withContext(Dispatchers.IO) {
             val countries = CovidApi.retrofitService.getSummary().await()
-           // database.countryDao.insertAll(countries.asDatabaseModel())
+            database.countryDao.insertAll(countries.asDatabaseModel())
             Timber.i("$countries")
 
 

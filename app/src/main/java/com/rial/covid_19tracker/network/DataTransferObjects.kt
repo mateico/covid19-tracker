@@ -7,7 +7,20 @@ import com.rial.covid_19tracker.database.DatabaseCountry
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NetworkCountryContainer(val videos: List<NetworkCountry>)
+data class NetworkVideoContainer(val videos: List<NetworkVideo>)
+
+@JsonClass(generateAdapter = true)
+data class NetworkVideo(
+    val title: String,
+    val description: String,
+    val url: String,
+    val updated: String,
+    val thumbnail: String,
+    val closedCaptions: String?)
+
+
+@JsonClass(generateAdapter = true)
+data class NetworkCountryContainer(val countries: List<NetworkCountry>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkGlobalDataContainer(val globalData: NetworkGlobalData)
@@ -21,12 +34,11 @@ data class NetworkSummaryResponseContainer(val summaryResponse: NetworkSummaryRe
  */
 @JsonClass(generateAdapter = true)
 data class NetworkCountry(
-    val title: String,
-    val description: String
- /*   ,
+    val Country_Region: String,
+    val Code: String,
     val Confirmed: Int,
     val Deaths: Int,
-    val NewDeaths: Int*/
+    val NewDeaths: Int
 )
 
 
@@ -49,7 +61,7 @@ fun NetworkCountryContainer.asDomainModel(): List<Country> {
 /**
  * Convert Network results to database objects
  */
-/*fun NetworkCountryContainer.asDatabaseModel(): List<DatabaseCountry> {
+fun NetworkCountryContainer.asDatabaseModel(): List<DatabaseCountry> {
     return countries.map {
         DatabaseCountry(
             code = it.Code,
@@ -58,7 +70,7 @@ fun NetworkCountryContainer.asDomainModel(): List<Country> {
             deaths = it.Deaths,
             newDeaths = it.NewDeaths)
     }
-}*/
+}
 
 @JsonClass(generateAdapter = true)
 data class NetworkGlobalData(
