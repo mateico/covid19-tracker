@@ -13,29 +13,23 @@ import com.rial.covid_19tracker.databinding.ListItemCountryBinding
 class CountryAdapter( private val onClickListener: OnClickListener ) :
     ListAdapter<Country, CountryAdapter.ViewHolder>(CountryDiffCallback()) {
 
-
-
-
-
     // The onBindViewHolder()function is called by RecyclerView to display the data for one list item at the specified position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
-
-
     // is called when the RecyclerView needs a view holder to represent an item.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ListItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: ListItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(
-            item: Country
-        ) {
+        fun bind(item: Country) {
             binding.country = item
             binding.executePendingBindings()
         }
@@ -52,6 +46,11 @@ class CountryAdapter( private val onClickListener: OnClickListener ) :
 
     }
 
+    /**
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [MarsProperty]
+     * associated with the current item to the [onClick] function.
+     * @param clickListener lambda that will be called with the current [MarsProperty]
+     */
     class OnClickListener(val clickListener: (country:Country) -> Unit) {
         fun onClick(country:Country) = clickListener(country)
     }
@@ -69,8 +68,6 @@ class CountryAdapter( private val onClickListener: OnClickListener ) :
         }
 
     }
-
-
 
 }
 

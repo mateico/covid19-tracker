@@ -90,4 +90,3 @@ data class NetworkGlobalData(
 data class NetworkSummaryResponse(
     val globalData: NetworkGlobalDataContainer,
     val countries: NetworkCountryContainer)
-

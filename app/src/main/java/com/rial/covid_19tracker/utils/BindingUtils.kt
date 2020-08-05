@@ -3,7 +3,15 @@ package com.rial.covid_19tracker.utils
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.rial.covid_19tracker.database.Country
+import com.rial.covid_19tracker.list.CountryAdapter
+
+@BindingAdapter("listCountries")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Country>?) {
+    val adapter = recyclerView.adapter as CountryAdapter
+    adapter.submitList(data)
+}
 
 @BindingAdapter("nameFormated")
 fun TextView.setNameFormatted(item: Country) {

@@ -21,14 +21,6 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
 
     val countries = repository.countries
 
-    private var _count = MutableLiveData<Int>()
-    val count: LiveData<Int>
-        get() = _count
-
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
-
     private val _navigateToDetail = MutableLiveData<Country>()
     val navigateToDetail: LiveData<Country>
         get() = _navigateToDetail
@@ -44,12 +36,8 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
     private var oneCountry = MutableLiveData<Country?>()
 
     init {
-        _count.value = 0
         refreshDataFromRepository()
     }
-
-
-
 
     override fun onCleared() {
         super.onCleared()
@@ -70,28 +58,16 @@ class ListViewModel(val database: CountryDao, application: Application) : Androi
      */
     private fun refreshDataFromRepository() {
         uiScope.launch {
-            // Get the Deferred object for our Retrofit request
-            // To use the Deferred object that Retrofit returns for the network task, you have to be inside a coroutine
-            //var getCountriesDeferred = CovidApi.retrofitService.getSummary()
             try {
-                // Await the completion of our Retrofit request
-                // Calling await() on the Deferred object returns the result from the network call when the value is ready.
-                //var listResult = getCountriesDeferred.await()
-                // update the response message for the successful response
-                //_response.value = "Success: ${listResult.countries.size} summary retrieved"
-                //result.value = listResult.countries
                 repository.refreshCountries()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
             } catch (e: Exception) {
-                //_response.value = "Failure: ${e.message}"
                 if(countries.value.isNullOrEmpty())
                     _eventNetworkError.value = true
             }
         }
     }
-
-
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

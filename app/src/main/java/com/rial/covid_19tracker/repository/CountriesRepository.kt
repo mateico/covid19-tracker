@@ -31,9 +31,6 @@ class CountriesRepository(private  val database: CovidDatabase) {
             val countries = CovidApi.retrofitService.getSummary().await()
             database.countryDao.insertAll(countries.asDatabaseModel())
             Timber.i("$countries")
-
-
         }
     }
-
 }

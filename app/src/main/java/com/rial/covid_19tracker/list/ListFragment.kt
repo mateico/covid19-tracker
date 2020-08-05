@@ -32,7 +32,7 @@ class ListFragment : Fragment() {
     ): View? {
 
         /*To inflate the fragment's view, call the DataBindingUtil.inflate() method on the fragment's Binding object, which is FragmentTitleBinding */
-        binding = DataBindingUtil.inflate<FragmentListBinding>(inflater,
+        binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_list,container,false)
 
         // Specify the fragment view as the lifecycle owner of the binding.
@@ -51,15 +51,14 @@ class ListFragment : Fragment() {
         )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
 
-        val adapter = CountryAdapter(CountryAdapter.OnClickListener {
+        binding.countryRecyclerView.adapter = CountryAdapter(CountryAdapter.OnClickListener {
             viewModel.onNavegatingToDetail(it)
         })
-        binding.countryRecyclerView.adapter = adapter
 
-        viewModel.countries.observe(viewLifecycleOwner, Observer {
+       /* viewModel.countries.observe(viewLifecycleOwner, Observer {
             // asign the value to the adapter's data
             adapter.submitList(it)
-        })
+        })*/
 
         binding.listViewModel = viewModel
 
