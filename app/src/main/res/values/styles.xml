@@ -7,4 +7,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="titleStyle">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="subTitleStyle">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/subtitleColor</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="textStyle">
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
 </resources>

@@ -28,39 +28,32 @@
 
             <TextView
                 android:id="@+id/nameTextView"
+                style="@style/titleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 app:nameFormated="@{country}"
                 tools:text="Inglaterra" />
 
+
             <TextView
                 android:id="@+id/confirmedCasesTextView"
+                style="@style/textStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:confirmedCasesFormated="@{country}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="2343243" />
-
-            <TextView
-                android:id="@+id/totalDeathsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-                app:totalDeathsFormated="@{country}"
-                tools:text="2243" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -74,21 +67,7 @@
                 app:layout_constraintVertical_bias="0.727"
                 app:srcCompat="@drawable/ic_baseline_perm_identity_24" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="235dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="TODO"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/totalDeathsTextView"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/confirmedCasesTextView"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-                app:layout_constraintVertical_bias="0.727"
-                app:srcCompat="@drawable/ic_baseline_sentiment_dissatisfied_24" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
