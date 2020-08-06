@@ -37,9 +37,7 @@ class CountryAdapter( private val onClickListener: OnClickListener ) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-
                 val binding = ListItemCountryBinding.inflate(layoutInflater, parent, false)
-
                 return ViewHolder(binding)
             }
         }
