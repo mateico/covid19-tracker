@@ -10,7 +10,7 @@
     <style name="titleStyle">
         <item name="android:textSize">@dimen/title_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/titleColor</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
