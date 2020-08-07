@@ -4,4 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_fragment_title">Lista</string>
     <string name="detail_fragment_title">Detalle</string>
+
+    <string name="confirmed_subtitle">Casos: </string>
+    <string name="deaths_subtitle">Muertes: </string>
+    <string name="active_subtitle">Activos: </string>
+    <string name="recovered_subtitle">Recuperados: </string>
+    <string name="new_confirmed_subtitle">Nuevos casos: </string>
+    <string name="new_deaths_subtitle">Nuevas muertes: </string>
+    <string name="new_recovered_subtitle">Nuevos recuperados: </string>
 </resources>
