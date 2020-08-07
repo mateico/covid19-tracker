@@ -16,7 +16,8 @@ data class NetworkVideo(
     val url: String,
     val updated: String,
     val thumbnail: String,
-    val closedCaptions: String?)
+    val closedCaptions: String?
+)
 
 
 @JsonClass(generateAdapter = true)
@@ -38,7 +39,11 @@ data class NetworkCountry(
     val Code: String,
     val Confirmed: Int,
     val Deaths: Int,
-    val NewDeaths: Int
+    val NewDeaths: Int,
+    val Recovered: Int,
+    val NewConfirmed: Int,
+    val NewRecovered: Int,
+    val Active: Int
 )
 
 
@@ -68,7 +73,12 @@ fun NetworkCountryContainer.asDatabaseModel(): List<DatabaseCountry> {
             name = it.Country_Region,
             confirmed = it.Confirmed,
             deaths = it.Deaths,
-            newDeaths = it.NewDeaths)
+            newDeaths = it.NewDeaths,
+            recovered = it.Recovered,
+            newConfirmed = it.NewConfirmed,
+            newRecovered = it.NewRecovered,
+            active = it.Active
+        )
     }
 }
 
@@ -81,7 +91,8 @@ data class NetworkGlobalData(
     val NewConfirmed: Int,
     val NewDeaths: Int,
     val NewRecovered: Int,
-    val Last_Update: String)
+    val Last_Update: String
+)
 
 /**
  * Videos represent a devbyte that can be played.
@@ -89,4 +100,5 @@ data class NetworkGlobalData(
 @JsonClass(generateAdapter = true)
 data class NetworkSummaryResponse(
     val globalData: NetworkGlobalDataContainer,
-    val countries: NetworkCountryContainer)
+    val countries: NetworkCountryContainer
+)

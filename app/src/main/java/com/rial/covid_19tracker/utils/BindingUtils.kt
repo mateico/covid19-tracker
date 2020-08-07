@@ -17,25 +17,45 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Country>?) {
     adapter.submitList(data)
 }
 
-@BindingAdapter("nameFormated")
+@BindingAdapter("nameFormatted")
 fun TextView.setNameFormatted(item: Country) {
     text = item.name
 }
 
-@BindingAdapter("confirmedCasesFormated")
+@BindingAdapter("confirmedCasesFormatted")
 fun TextView.setConfirmedFormatted(item: Country) {
     text = "%,d".format(item.confirmed)
     //text = java.text.NumberFormat.getIntegerInstance().format(item.confirmed)
 }
 
-@BindingAdapter("totalDeathsFormated")
-fun TextView.setTotalDeathsFormatted(item: Country) {
+@BindingAdapter("deathsFormatted")
+fun TextView.setDeathsFormatted(item: Country) {
     text = item.deaths.toString()
 }
 
-@BindingAdapter("newDeathsFormated")
+@BindingAdapter("newDeathsFormatted")
 fun TextView.setNewDeathsFormatted(item: Country) {
     text = item.newDeaths.toString()
+}
+
+@BindingAdapter("recoveredFormatted")
+fun TextView.setRecoveredFormatted(item: Country) {
+    text = item.recovered.toString()
+}
+
+@BindingAdapter("newConfirmedFormatted")
+fun TextView.setNewConfirmedFormatted(item: Country) {
+    text = item.newConfirmed.toString()
+}
+
+@BindingAdapter("newRecoveredFormatted")
+fun TextView.setNewRecoveredFormatted(item: Country) {
+    text = item.newRecovered.toString()
+}
+
+@BindingAdapter("activeFormatted")
+fun TextView.setActiveFormatted(item: Country) {
+    text = item.active.toString()
 }
 
 /**
