@@ -13,6 +13,10 @@ data class Country (
         val name: String,
         val confirmed: Int,
         val deaths: Int,
-        val newDeaths: Int
+        val newDeaths: Int,
+        val recovered: Int,
+        val newConfirmed: Int,
+        val newRecovered: Int,
+        val active: Int
 ) : Parcelable
 

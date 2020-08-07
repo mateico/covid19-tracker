@@ -20,7 +20,16 @@ data class DatabaseCountry constructor(
     @ColumnInfo(name = "total_deaths")
     val deaths: Int,
     @ColumnInfo(name = "new_deaths")
-    val newDeaths: Int
+    val newDeaths: Int,
+    @ColumnInfo(name = "recovered")
+    val recovered: Int,
+    @ColumnInfo(name = "new_confirmed")
+    val newConfirmed: Int,
+    @ColumnInfo(name = "new_recovered")
+    val newRecovered: Int,
+    @ColumnInfo(name = "active")
+    val active: Int
+
 )
 
 /**
@@ -33,6 +42,11 @@ fun List<DatabaseCountry>.asDomainModel(): List<Country> {
             name = it.name,
             confirmed = it.confirmed,
             deaths = it.deaths,
-            newDeaths = it.newDeaths)
+            newDeaths = it.newDeaths,
+            recovered = it.recovered,
+            newConfirmed = it.newConfirmed,
+            newRecovered = it.newRecovered,
+            active = it.active
+        )
     }
 }
