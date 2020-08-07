@@ -9,6 +9,7 @@
         <variable
             name="detailViewModel"
             type="com.rial.covid_19tracker.detail.DetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,11 +26,15 @@
             android:layout_marginTop="@dimen/margin_wide"
             android:layout_marginEnd="@dimen/margin_wide"
             android:fontFamily="@font/roboto"
-            android:text="@{detailViewModel.selectedCountry.name}"
+            app:nameFormated="@{detailViewModel.selectedCountry}"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="country name" />
+
+        <!--android:text="@{detailViewModel.selectedCountry.name}"-->
+        <!--app:nameFormated="@{country}"-->
 
         <TextView
             android:id="@+id/textView5"
@@ -48,9 +53,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:confirmedCasesFormatted="@{detailViewModel.selectedCountry}"
+            app:confirmedCasesFormated="@{detailViewModel.selectedCountry}"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/title_text" />
+
+        <!--android:text="@{detailViewModel.selectedCountry.confirmed}"-->
 
         <TextView
             android:id="@+id/textView7"

@@ -21,9 +21,6 @@ class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var viewModelFactory: ListViewModelFactory
-
-
-
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -54,11 +51,6 @@ class ListFragment : Fragment() {
         binding.countryRecyclerView.adapter = CountryAdapter(CountryAdapter.OnClickListener {
             viewModel.onNavegatingToDetail(it)
         })
-
-       /* viewModel.countries.observe(viewLifecycleOwner, Observer {
-            // asign the value to the adapter's data
-            adapter.submitList(it)
-        })*/
 
         binding.listViewModel = viewModel
 

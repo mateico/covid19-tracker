@@ -14,13 +14,14 @@ class DetailFragment : Fragment() {
 
     private lateinit var viewModel: DetailViewModel
     private lateinit var viewModelFactory: DetailViewModelFactory
+    private lateinit var binding: FragmentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // inflates fragment's view
-        val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
+        binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_detail,container,false)
 
         binding.lifecycleOwner = viewLifecycleOwner

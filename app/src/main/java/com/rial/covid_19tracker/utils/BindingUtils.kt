@@ -5,7 +5,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rial.covid_19tracker.database.Country
+import com.rial.covid_19tracker.database.DatabaseCountry
 import com.rial.covid_19tracker.list.CountryAdapter
+import java.text.DecimalFormat
+
+val dec = DecimalFormat("#,###.##")
 
 @BindingAdapter("listCountries")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Country>?) {
@@ -20,7 +24,8 @@ fun TextView.setNameFormatted(item: Country) {
 
 @BindingAdapter("confirmedCasesFormated")
 fun TextView.setConfirmedFormatted(item: Country) {
-    text = item.confirmed.toString()
+    text = "%,d".format(item.confirmed)
+    //text = java.text.NumberFormat.getIntegerInstance().format(item.confirmed)
 }
 
 @BindingAdapter("totalDeathsFormated")
