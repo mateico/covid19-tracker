@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".detail.DetailFragment">
+
+    <data>
+
+        <variable
+            name="detailViewModel"
+            type="com.rial.covid_19tracker.detail.DetailViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/listConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_wide">
+
+            <TextView
+                android:id="@+id/text_name"
+                style="@style/titleStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_wide"
+                android:layout_marginTop="@dimen/margin_wide"
+                android:layout_marginEnd="@dimen/margin_wide"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:nameFormatted="@{detailViewModel.selectedCountry}"
+                tools:text="country name" />
+
+            <TextView
+                android:id="@+id/text_confirmed_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/confirmed_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_confirmed_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_confirmed_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:confirmedCasesFormatted="@{detailViewModel.selectedCountry}"
+                app:layout_constraintStart_toEndOf="@+id/text_confirmed_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_name"
+                tools:text="12345678" />
+
+            <TextView
+                android:id="@+id/text_deaths_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/deaths_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_deaths_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_deaths_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:deathsFormatted="@{detailViewModel.selectedCountry}"
+                app:layout_constraintStart_toEndOf="@+id/text_deaths_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_confirmed_value"
+                tools:text="1234567" />
+
+            <TextView
+                android:id="@+id/text_active_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/active_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_active_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_active_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:activeFormatted="@{detailViewModel.selectedCountry}"
+                app:layout_constraintStart_toEndOf="@+id/text_active_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_deaths_value"
+                tools:text="123456" />
+
+            <TextView
+                android:id="@+id/text_recovered_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/recovered_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_recovered_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_recovered_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/text_recovered_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_active_value"
+                app:recoveredFormatted="@{detailViewModel.selectedCountry}"
+                tools:text="12345" />
+
+            <TextView
+                android:id="@+id/text_new_confirmed_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/new_confirmed_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_new_confirmed_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_new_confirmed_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toEndOf="@+id/text_new_confirmed_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_recovered_value"
+                app:newConfirmedFormatted="@{detailViewModel.selectedCountry}"
+                tools:text="1234" />
+
+            <TextView
+                android:id="@+id/text_new_deaths_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/new_deaths_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_new_deaths_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_new_deaths_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/text_new_deaths_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_new_confirmed_value"
+                app:newDeathsFormatted="@{detailViewModel.selectedCountry}"
+                tools:text="123" />
+
+            <TextView
+                android:id="@+id/text_new_recovered_title"
+                style="@style/subTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/new_recovered_subtitle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_new_recovered_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_new_recovered_value"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/text_new_recovered_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_new_deaths_value"
+                app:newRecoveredFormatted="@{detailViewModel.selectedCountry}"
+                tools:text="12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
