@@ -16,7 +16,9 @@ import com.rial.covid_19tracker.*
 import com.rial.covid_19tracker.database.CovidDatabase
 import com.rial.covid_19tracker.database.getDatabase
 import com.rial.covid_19tracker.databinding.FragmentListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
