@@ -28,14 +28,8 @@ object AppModule {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-
-
     @Provides
     fun provideCovidApiService(retrofit: Retrofit): CovidApiService = retrofit.create(CovidApiService::class.java)
-
-    /*@Singleton
-    @Provides
-    fun provideCharacterRemoteDataSource(covidApiService: CovidApiService) = CharacterRemoteDataSource(covidApiService)*/
 
     @Singleton
     @Provides
