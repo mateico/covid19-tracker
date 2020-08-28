@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
@@ -21,8 +22,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    private lateinit var viewModel: ListViewModel
-    private lateinit var viewModelFactory: ListViewModelFactory
+    //private lateinit var viewModel: ListViewModel
+    private val viewModel: ListViewModel by viewModels()
+    //private lateinit var viewModelFactory: ListViewModelFactory
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -44,11 +46,11 @@ class ListFragment : Fragment() {
         // I need a reference to my data source via a reference to the DAO.
         val dataSource= getDatabase(application).countryDao
 
-        viewModelFactory = ListViewModelFactory(
+       /* viewModelFactory = ListViewModelFactory(
             dataSource,
             application
         )
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java)*/
 
         binding.countryRecyclerView.adapter = CountryAdapter(CountryAdapter.OnClickListener {
             viewModel.onNavegatingToDetail(it)

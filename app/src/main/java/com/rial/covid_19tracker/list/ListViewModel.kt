@@ -1,6 +1,7 @@
 package com.rial.covid_19tracker.list
 
 import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.rial.covid_19tracker.database.Country
 import com.rial.covid_19tracker.database.CountryDao
@@ -8,9 +9,9 @@ import com.rial.covid_19tracker.database.getDatabase
 import com.rial.covid_19tracker.repository.CountriesRepository
 import kotlinx.coroutines.*
 
-class ListViewModel(val database: CountryDao, application: Application) : AndroidViewModel(application) {
+class ListViewModel @ViewModelInject constructor(private val repository: CountriesRepository) : ViewModel() {
 
-    private val repository = CountriesRepository(getDatabase(application))
+    //private val repository = CountriesRepository(getDatabase(application))
 
     // allows you to cancel all coroutines started by this view model when the view model is no longer used and is destroyed
     private var viewModelJob = Job()

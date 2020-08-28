@@ -8,15 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://corona.azure-api.net/"
-//private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
 
-/**
- * A public interface that exposes the [getProperties] method
- */
-
-/**
- * A public Api object that exposes the lazy-initialized Retrofit service
- */
 object CovidApi {
 
     private val retrofit = Retrofit.Builder()
