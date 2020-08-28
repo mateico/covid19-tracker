@@ -28,7 +28,7 @@ class CountriesRepository(private  val database: CovidDatabase) {
      */
     suspend fun refreshCountries(){
         withContext(Dispatchers.IO) {
-            val countries = CovidApi.retrofitService.getSummary().await()
+            val countries = CovidApi.retrofitService.getSummaryAsync().await()
             database.countryDao.insertAll(countries.asDatabaseModel())
             Timber.i("$countries")
         }

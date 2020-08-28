@@ -1,6 +1,7 @@
 package com.rial.covid_19tracker.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.rial.covid_19tracker.data.source.remote.CovidApiService
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -12,15 +13,6 @@ private const val BASE_URL = "https://corona.azure-api.net/"
 /**
  * A public interface that exposes the [getProperties] method
  */
-interface CovidApiService {
-    /**
-     * Returns a Coroutine [Deferred] [List] of [MarsProperty] which can be fetched with await() if
-     * in a Coroutine scope.
-     */
-    @GET("summary")
-    //@GET("devbytes")
-    fun getSummary(): Deferred<NetworkCountryContainer>
-}
 
 /**
  * A public Api object that exposes the lazy-initialized Retrofit service
