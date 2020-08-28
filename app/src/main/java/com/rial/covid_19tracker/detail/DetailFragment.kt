@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+//import androidx.lifecycle.ViewModelProviders
 import com.rial.covid_19tracker.R
 import com.rial.covid_19tracker.databinding.FragmentDetailBinding
 
@@ -30,9 +30,9 @@ class DetailFragment : Fragment() {
             DetailViewModelFactory(
                 DetailFragmentArgs.fromBundle(arguments!!).selectedCountry
             )
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
+       // viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
 
-        binding.detailViewModel = viewModel
+        //binding.detailViewModel = viewModel
 
         return binding.root
     }
