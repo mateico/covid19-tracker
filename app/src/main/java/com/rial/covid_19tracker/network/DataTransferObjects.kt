@@ -1,8 +1,5 @@
 package com.rial.covid_19tracker.network
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import com.rial.covid_19tracker.database.Country
 import com.rial.covid_19tracker.database.DatabaseCountry
 import com.squareup.moshi.JsonClass
 
@@ -45,23 +42,6 @@ data class NetworkCountry(
     val NewRecovered: Int,
     val Active: Int
 )
-
-
-/**
- * Convert Network results to database objects
- */
-/*
-fun NetworkCountryContainer.asDomainModel(): List<Country> {
-    return countries.map {
-        Country(
-            code = it.Code,
-            name = it.Country_Region,
-            confirmed = it.Confirmed,
-            deaths = it.Deaths,
-            newDeaths = it.NewDeaths)
-    }
-}
-*/
 
 /**
  * Convert Network results to database objects
