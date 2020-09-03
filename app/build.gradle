@@ -53,6 +53,7 @@ dependencies {
     // Support libraries
     implementation "androidx.appcompat:appcompat:$supportlibVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     // Testing
     testImplementation 'junit:junit:4.12'
