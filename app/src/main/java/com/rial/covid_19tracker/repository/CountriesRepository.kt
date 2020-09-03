@@ -2,19 +2,21 @@ package com.rial.covid_19tracker.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.rial.covid_19tracker.data.source.remote.CovidApiService
 import com.rial.covid_19tracker.database.Country
-import com.rial.covid_19tracker.database.CovidDatabase
+import com.rial.covid_19tracker.database.CountryDao
 import com.rial.covid_19tracker.database.asDomainModel
-import com.rial.covid_19tracker.network.CovidApi
 import com.rial.covid_19tracker.network.asDatabaseModel
-//import com.rial.covid_19tracker.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
 
-class CountriesRepository(private  val database: CovidDatabase) {
+class CountriesRepository@Inject constructor(
+    private val rcovidApiService: CovidApiService,
+    private val localDataSource: CountryDao) {
 
-    val countries : LiveData<List<Country>> = Transformations.map(database.countryDao.getAllCountries()) {
+    val countries : LiveData<List<Country>> = Transformations.map(localDataSource.getAllCountries()) {
         it.asDomainModel()
     }
 
@@ -28,8 +30,8 @@ class CountriesRepository(private  val database: CovidDatabase) {
      */
     suspend fun refreshCountries(){
         withContext(Dispatchers.IO) {
-            val countries = CovidApi.retrofitService.getSummary().await()
-            database.countryDao.insertAll(countries.asDatabaseModel())
+            val countries = rcovidApiService.getSummaryAsync().await()
+            localDataSource.insertAll(countries.asDatabaseModel())
             Timber.i("$countries")
         }
     }
